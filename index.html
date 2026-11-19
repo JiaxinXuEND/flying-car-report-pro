@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="EH216-S 无人驾驶载人航空器系统安全工程分析课程项目">
+<title>EH216-S | 全方位系统安全分析</title>
+<style>
+:root{--bg:#050b16;--panel:#0b1728;--panel2:#0d2035;--line:rgba(87,190,255,.22);--cyan:#53d9ff;--blue:#398cff;--white:#eaf6ff;--muted:#91a9bd;--orange:#ffb45e;--red:#ff647c;--green:#63e6bd}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 75% 5%,#102d4b 0,transparent 35%),linear-gradient(180deg,#050b16,#071222 55%,#050b16);color:var(--white);font-family:Inter,"Microsoft YaHei",Arial,sans-serif;line-height:1.65}a{color:var(--cyan);text-decoration:none}a:hover{color:#fff}button{font:inherit}.wrap{width:min(1180px,92%);margin:auto}.topbar{position:sticky;top:0;z-index:10;background:rgba(4,11,22,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.nav{height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{font-weight:800;letter-spacing:2px;color:#fff}.brand b{color:var(--cyan)}.navlinks{display:flex;gap:22px;font-size:13px;color:var(--muted)}.navlinks a{color:inherit}.navlinks a:hover{color:var(--cyan)}.hero{min-height:650px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:30px;padding:70px 0 85px;position:relative}.eyebrow{color:var(--cyan);font-size:12px;letter-spacing:4px;text-transform:uppercase}.hero h1{font-size:clamp(42px,6vw,76px);line-height:1.04;margin:18px 0 20px;letter-spacing:-2px}.hero h1 span{color:var(--cyan);text-shadow:0 0 30px #36caff55}.lead{max-width:590px;color:#afc3d5;font-size:17px}.chips{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0}.chip{border:1px solid var(--line);padding:7px 12px;border-radius:3px;color:#bfeaff;font-size:12px;background:#0a1b2c}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}.btn{padding:12px 19px;border:1px solid var(--cyan);color:var(--cyan);font-size:13px;letter-spacing:1px;display:inline-block;transition:.2s}.btn.primary{background:var(--cyan);color:#03101c;font-weight:800;box-shadow:0 0 28px #42d5ff44}.btn:hover{transform:translateY(-3px);box-shadow:0 8px 28px #35caff33}.hero-visual{position:relative;min-height:410px;display:grid;place-items:center}.orb{position:absolute;width:min(440px,90vw);aspect-ratio:1;border:1px solid #4acfff38;border-radius:50%;box-shadow:0 0 80px #19aaff13,inset 0 0 70px #19aaff0d}.orb:before,.orb:after{content:"";position:absolute;inset:9%;border:1px dashed #4acfff44;border-radius:50%;animation:spin 28s linear infinite}.orb:after{inset:20%;border-style:solid;animation-direction:reverse;animation-duration:36s}.aircraft{position:relative;width:100%;max-width:530px;filter:drop-shadow(0 18px 25px #0009);z-index:1}.scan{position:absolute;width:85%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);top:50%;animation:scan 4s ease-in-out infinite;z-index:2}.visual-label{position:absolute;bottom:12px;right:0;color:var(--muted);font-size:10px;letter-spacing:2px}@keyframes spin{to{transform:rotate(360deg)}}@keyframes scan{0%,100%{transform:translateY(-130px);opacity:.15}50%{transform:translateY(130px);opacity:.8}}.section{padding:78px 0;border-top:1px solid #ffffff0b}.section-head{margin-bottom:32px}.kicker{font-size:11px;letter-spacing:3px;color:var(--cyan)}h2{font-size:clamp(27px,4vw,42px);margin:7px 0 8px;line-height:1.2}.sub{color:var(--muted);max-width:760px;margin:0}.grid{display:grid;gap:16px}.grid.two{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:repeat(3,1fr)}.grid.four{grid-template-columns:repeat(4,1fr)}.card{background:linear-gradient(145deg,#0c1d30dd,#081321dd);border:1px solid var(--line);padding:22px;position:relative;overflow:hidden}.card:before{content:"";position:absolute;left:0;top:0;width:35px;height:2px;background:var(--cyan);box-shadow:0 0 15px var(--cyan)}.card h3{margin:4px 0 9px;font-size:17px}.card p,.card li{font-size:13px;color:#a9bdce}.num{font-size:30px;font-weight:800;color:var(--cyan);line-height:1.2}.tag{display:inline-block;font-size:10px;padding:3px 7px;border:1px solid #53d9ff55;color:var(--cyan);margin:0 5px 5px 0}.notice{border-left:3px solid var(--orange);background:#ffb45e12;padding:15px 18px;color:#d8c4a8;font-size:13px;margin:22px 0}.stat{font-size:29px;font-weight:800;color:#fff}.stat small{font-size:11px;color:var(--muted);font-weight:400;display:block}.spec-table{width:100%;border-collapse:collapse;font-size:13px}.spec-table th,.spec-table td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--line);vertical-align:top}.spec-table th{width:25%;color:var(--cyan);font-weight:600;background:#0b1b2b}.spec-table td{color:#b5c7d7}.system{display:grid;grid-template-columns:1fr 1fr;gap:12px}.sysitem{border:1px solid var(--line);padding:18px;background:#0a1929;display:flex;gap:14px;align-items:flex-start}.sysicon{width:38px;height:38px;flex:0 0 38px;border:1px solid #53d9ff66;display:grid;place-items:center;color:var(--cyan);font-size:18px}.sysitem h3{margin:0 0 5px;font-size:15px}.sysitem p{margin:0;color:var(--muted);font-size:12px}.risk{border:1px solid var(--line);background:#091726;padding:18px}.risk-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.level{font-size:10px;padding:4px 8px;border:1px solid}.high{color:var(--red);border-color:#ff647c77}.medium{color:var(--orange);border-color:#ffb45e77}.low{color:var(--green);border-color:#63e6bd77}.risk h3{font-size:15px;margin:8px 0}.risk p{font-size:12px;color:var(--muted);margin:0}.bar{height:4px;background:#20344a;margin:13px 0 8px}.bar i{display:block;height:100%;background:var(--orange)}.timeline{border-left:1px solid #53d9ff66;margin-left:10px;padding-left:24px}.step{position:relative;padding:0 0 23px}.step:before{content:"";position:absolute;left:-30px;top:7px;width:10px;height:10px;background:var(--cyan);box-shadow:0 0 12px var(--cyan);border-radius:50%}.step h3{font-size:15px;margin:0}.step p{font-size:12px;color:var(--muted);margin:5px 0}.matrix{overflow-x:auto}.matrix table{min-width:680px}.pill{font-size:10px;color:#b8d8ea;border:1px solid #34536b;padding:3px 7px}.footer{padding:38px 0;border-top:1px solid var(--line);color:var(--muted);font-size:11px}.footer strong{color:#dff5ff}.source-list li{margin:9px 0;font-size:12px;color:#a9bdce}.source-list a{overflow-wrap:anywhere}.disclaimer{color:#839bad;font-size:11px;margin-top:18px}.progress{position:fixed;top:68px;left:0;height:2px;background:var(--cyan);width:0;z-index:20}.backtop{position:fixed;bottom:20px;right:20px;background:#0d2539;border:1px solid var(--line);color:var(--cyan);width:42px;height:42px;cursor:pointer}.reveal{opacity:0;transform:translateY(18px);transition:.7s}.reveal.show{opacity:1;transform:none}
+@media(max-width:800px){.navlinks{display:none}.hero{grid-template-columns:1fr;padding:60px 0}.hero-visual{min-height:320px}.grid.four{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:repeat(2,1fr)}.system{grid-template-columns:1fr}.grid.two{grid-template-columns:1fr}.section{padding:58px 0}}@media(max-width:480px){.grid.three,.grid.four{grid-template-columns:1fr}.hero h1{font-size:44px}.hero-visual{min-height:270px}.card{padding:18px}.spec-table th,.spec-table td{padding:10px 8px}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<header class="topbar"><div class="wrap nav"><a class="brand" href="#home">AERO<span style="color:var(--cyan)">SAFE</span> <b>/ EH216-S</b></a><nav class="navlinks"><a href="#overview">概览</a><a href="#architecture">系统架构</a><a href="#safety">安全分析</a><a href="#risk">风险评估</a><a href="#conclusion">结论</a><a href="#sources">参考资料</a></nav><span class="eyebrow">SYSTEM SAFETY / 2026</span></div></header>
+<main id="home">
+<section class="wrap hero">
+<div><div class="eyebrow">ADVANCED AIR MOBILITY · SAFETY ENGINEERING</div><h1>EH216-S<br><span>全方位安全分析</span></h1><p class="lead">面向无人驾驶载人航空器的系统安全工程研究。从飞行控制、能源动力、通信链路到地面运行，拆解关键系统、识别危险场景，并建立覆盖全生命周期的安全防护思路。</p><div class="chips"><span class="chip">MULTI-ROTOR eVTOL</span><span class="chip">UNMANNED / PILOTLESS</span><span class="chip">SYSTEM SAFETY</span></div><div class="actions"><a class="btn primary" href="#overview">开始分析　↓</a><a class="btn" href="#risk">查看风险矩阵</a></div></div>
+<div class="hero-visual"><div class="orb"></div><div class="scan"></div>
+<!-- 原创CSS/SVG示意图，非官方产品照片 -->
+<svg class="aircraft" viewBox="0 0 640 390" role="img" aria-label="多旋翼载人航空器概念示意图">
+<defs><linearGradient id="body" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f3fbff"/><stop offset=".48" stop-color="#8eaabd"/><stop offset="1" stop-color="#31536d"/></linearGradient><linearGradient id="glass"><stop stop-color="#1c668e"/><stop offset="1" stop-color="#061827"/></linearGradient></defs>
+<g stroke="#8ceaff" stroke-width="2" opacity=".8" fill="none"><path d="M90 115H550M115 95H525M150 285H490" stroke-dasharray="5 8"/></g>
+<g fill="url(#body)" stroke="#c7f3ff" stroke-width="2">
+<path d="M276 160 Q320 137 364 160 L410 211 Q416 226 394 238 L246 238 Q224 226 230 211Z"/>
+<path d="M250 187 Q320 163 390 187 L374 218 Q320 234 266 218Z" fill="url(#glass)"/>
+<path d="M305 145L320 112L335 145Z"/><path d="M320 238L320 270" />
+<path d="M260 203L150 145L139 154L245 222Z"/><path d="M380 203L490 145L501 154L395 222Z"/>
+<path d="M270 218L160 280L150 271L245 205Z"/><path d="M370 218L480 280L490 271L395 205Z"/>
+</g>
+<g stroke="#bcefff" stroke-width="5" stroke-linecap="round" fill="none"><path d="M117 139L178 139M462 139L523 139M127 285L188 285M452 285L513 285"/></g>
+<g fill="#53d9ff" stroke="#bcefff" stroke-width="2"><circle cx="147" cy="145" r="15"/><circle cx="493" cy="145" r="15"/><circle cx="158" cy="276" r="15"/><circle cx="482" cy="276" r="15"/><circle cx="320" cy="112" r="9"/></g>
+<g stroke="#53d9ff" stroke-width="2" fill="none" opacity=".7"><circle cx="147" cy="145" r="28" stroke-dasharray="3 5"/><circle cx="493" cy="145" r="28" stroke-dasharray="3 5"/><circle cx="158" cy="276" r="28" stroke-dasharray="3 5"/><circle cx="482" cy="276" r="28" stroke-dasharray="3 5"/></g>
+<g fill="#d9f6ff" font-size="10" font-family="Arial"><text x="320" y="320" text-anchor="middle" letter-spacing="4">ELECTRIC VERTICAL TAKE-OFF &amp; LANDING</text><text x="320" y="340" text-anchor="middle" fill="#53d9ff">SCHEMATIC / NOT TO SCALE</text></g>
+</svg><div class="visual-label">FIG. 01 / CONCEPTUAL VEHICLE RENDER</div></div>
+</section>
+<section class="section" id="overview"><div class="wrap"><div class="section-head"><div class="kicker">01 / PRODUCT OVERVIEW</div><h2>产品与任务边界</h2><p class="sub">研究对象：亿航智能 EH216-S 无人驾驶载人电动垂直起降航空器。分析聚焦“航空器—运行控制—起降场—维护保障”组成的运行系统，而不是只看单一机体。</p></div>
+<div class="grid four">
+<div class="card"><div class="num">01</div><h3>产品定位</h3><p>面向低空短途载人交通及相关场景的无人驾驶 eVTOL 航空器。</p></div>
+<div class="card"><div class="num">02</div><h3>构型特点</h3><p>多旋翼分布式电推进、垂直起降、机上无驾驶员，依赖自动飞行与地面运行支持。</p></div>
+<div class="card"><div class="num">03</div><h3>安全目标</h3><p>避免失控、失推、失能、导航错误及地面运行失误导致不可接受的人员伤害。</p></div>
+<div class="card"><div class="num">04</div><h3>系统边界</h3><p>覆盖机载软硬件、能源、通信、地面站、起降设施、人员与运行程序。</p></div>
+</div>
+<div class="notice"><strong>数据口径说明：</strong>本页面用于课程系统安全分析。公开资料中的型号参数、认证信息以官方文件为准；未公开的冗余等级、故障率、软件架构及安全目标不作臆测。下文风险等级属于课程定性研判，不代表制造商或适航审定结论。</div>
+<div class="grid two" style="margin-top:18px"><div class="card"><h3>公开参数与信息核对</h3><table class="spec-table"><tr><th>型号</th><td>EH216-S</td></tr><tr><th>制造商</th><td>亿航智能（EHang）</td></tr><tr><th>航空器类别</th><td>无人驾驶载人电动垂直起降航空器（eVTOL）</td></tr><tr><th>动力形式</th><td>电力驱动、多旋翼分布式推进</td></tr><tr><th>驾驶方式</th><td>机上无驾驶员，采用自动飞行控制</td></tr><tr><th>适航信息</th><td>公开资料显示：2023 年取得型号合格证（TC）及标准适航证（AC）；2024 年取得生产许可证（PC）；亿航官方适航页面记载，2025 年 3 月运营方取得首批载人无人驾驶航空器运营合格证（OC）。证书适用对象不同，不能相互替代。</td></tr></table></div>
+<div class="card"><h3>典型任务剖面</h3><div class="timeline"><div class="step"><h3>任务规划与放行</h3><p>航线、天气、载荷、电池状态、空域与起降点条件检查。</p></div><div class="step"><h3>乘客登机与起飞前检查</h3><p>乘客约束、舱门状态、机体状态、通信与导航状态确认。</p></div><div class="step"><h3>垂直起飞与爬升</h3><p>推进系统建立推力，飞控完成姿态稳定和航迹跟踪。</p></div><div class="step"><h3>巡航与航路监控</h3><p>定位、避障/航路约束、能源余量和链路状态持续监测。</p></div><div class="step"><h3>进近、着陆与关车</h3><p>确认着陆区安全，完成下降、接地、动力关闭和乘客离机。</p></div></div></div></div>
+</div></section>
+<section class="section" id="architecture"><div class="wrap"><div class="section-head"><div class="kicker">02 / SYSTEM ARCHITECTURE</div><h2>系统组成与关键技术</h2><p class="sub">将 EH216-S 视为复杂社会技术系统。以下为基于公开产品形态建立的功能分解，具体部件配置与实现细节需以型号文件和制造商技术资料为准。</p></div>
+<div class="system">
+<div class="sysitem"><div class="sysicon">✥</div><div><h3>飞行控制与自动驾驶</h3><p>姿态估计、飞行状态管理、航迹跟踪、起降控制、故障检测与处置。安全重点：传感器融合错误、控制律异常、软件共因失效。</p></div></div>
+<div class="sysitem"><div class="sysicon">⚡</div><div><h3>电池与高压供电</h3><p>电能储存、配电、状态监测与热管理。安全重点：电芯热失控、短路、过充过放、绝缘故障及供电中断。</p></div></div>
+<div class="sysitem"><div class="sysicon">◉</div><div><h3>分布式电推进</h3><p>电机、螺旋桨及其驱动控制共同产生升力和姿态控制力矩。安全重点：电机/驱动器失效、桨叶损伤、推力不一致与振动。</p></div></div>
+<div class="sysitem"><div class="sysicon">⌖</div><div><h3>导航与感知</h3><p>卫星导航、惯性测量及其他定位/感知信息支持位置与姿态估计。安全重点：定位漂移、遮挡、多路径干扰、传感器污染或失准。</p></div></div>
+<div class="sysitem"><div class="sysicon">⌁</div><div><h3>通信与地面控制</h3><p>机载通信设备与地面运行控制链路支持状态监控、任务管理及必要指令交互。安全重点：链路中断、延迟、干扰、错误指令与网络攻击。</p></div></div>
+<div class="sysitem"><div class="sysicon">▣</div><div><h3>机体结构与乘员舱</h3><p>承载结构、座椅/约束、舱门及防护设计。安全重点：结构疲劳、连接松脱、硬着陆载荷、乘员约束失效与疏散困难。</p></div></div>
+<div class="sysitem"><div class="sysicon">⌂</div><div><h3>起降场与地面保障</h3><p>起降区域、充电设施、消防救援、气象监测、隔离区与地面人员程序。安全重点：异物侵入、人员误入、充电事故及应急响应延迟。</p></div></div>
+<div class="sysitem"><div class="sysicon">⚙</div><div><h3>维护与持续适航</h3><p>健康监测、故障记录、定检、软件/构型管理、维修放行与人员资质。安全重点：漏检、错误维修、部件寿命超限及配置不一致。</p></div></div>
+</div>
+</div></section>
+<section class="section" id="safety"><div class="wrap"><div class="section-head"><div class="kicker">03 / SAFETY ENGINEERING</div><h2>全方位安全工程分析</h2><p class="sub">采用“危险识别—顶层事故—安全约束—验证证据”的逻辑。重点不是声称系统绝对安全，而是说明危险如何产生、如何被阻断，以及还需要什么证据证明风险受控。</p></div>
+<div class="grid three">
+<div class="card"><span class="tag">FUNCTIONAL SAFETY</span><h3>功能安全</h3><p>分析飞控、能源管理、推进控制和任务管理功能在正常、异常及故障状态下的行为。关注错误输出、功能丧失、非预期动作和时序错误。</p></div>
+<div class="card"><span class="tag">HARDWARE SAFETY</span><h3>硬件与结构安全</h3><p>关注电机、桨叶、电池、线束、连接器、承力结构的失效模式；通过设计裕度、环境试验、疲劳试验、检查与寿命管理降低风险。</p></div>
+<div class="card"><span class="tag">SOFTWARE ASSURANCE</span><h3>软件与复杂性安全</h3><p>自动驾驶软件需有需求追踪、代码验证、边界条件测试、配置管理和独立审查；避免单点软件缺陷引发系统级危险。</p></div>
+<div class="card"><span class="tag">CYBER SECURITY</span><h3>网络与信息安全</h3><p>保护地空通信、地面站、维护接口和数据链路；实施身份鉴别、权限分级、加密、日志审计、漏洞管理及安全更新。</p></div>
+<div class="card"><span class="tag">HUMAN FACTORS</span><h3>人为因素安全</h3><p>机上无驾驶员并不意味着无人因风险。地面操作员、维修人员、乘客和应急人员都可能成为风险链条的一环；需控制误操作、误判和沟通失误。</p></div>
+<div class="card"><span class="tag">OPERATIONAL SAFETY</span><h3>运行与环境安全</h3><p>建立天气/风况限制、航线与空域管理、起降区隔离、乘客管理、备降/终止任务策略和地面应急预案。</p></div>
+</div>
+<div style="margin-top:28px" class="card"><h3>顶层危险与安全约束（课程分析）</h3><div class="matrix"><table class="spec-table"><tr><th>顶层危险</th><th>可能诱因（示例）</th><th>建议安全约束</th><th>验证证据</th></tr><tr><td>H1：飞行中失去可控飞行能力</td><td>飞控异常、导航错误、推力严重不平衡</td><td>关键功能故障检测；受控降级/终止策略；控制权限与状态监控</td><td>故障注入、硬件在环/软件在环、飞行试验与安全评估报告</td></tr><tr><td>H2：升力或动力不足</td><td>电池供电异常、电机/驱动器失效、桨叶损伤</td><td>能源余量监控；推进健康监测；限制任务包线；维护寿命控制</td><td>推进台架试验、热/电气试验、故障模式验证</td></tr><tr><td>H3：碰撞地面障碍物或人员</td><td>定位偏差、航路冲突、起降区侵入、感知盲区</td><td>航路与地理围栏；起降区净空检查；地面隔离和冲突管理</td><td>场景仿真、定位性能试验、运行演练与现场检查</td></tr><tr><td>H4：乘员遭受火灾/电击/冲击伤害</td><td>电池热事件、绝缘失效、硬着陆、约束失效</td><td>电气隔离与热防护；乘员约束；应急断电、消防与疏散程序</td><td>电池安全试验、结构/约束试验、应急演练</td></tr><tr><td>H5：错误任务或错误指令被执行</td><td>地面站误操作、通信欺骗、权限管理缺陷</td><td>指令鉴权与校验；双重确认；权限最小化；异常指令拒绝策略</td><td>网络安全测试、人因评估、端到端任务测试</td></tr></table></div></div>
+</div></section>
+<section class="section" id="risk"><div class="wrap"><div class="section-head"><div class="kicker">04 / RISK ASSESSMENT</div><h2>风险识别与定性评估</h2><p class="sub">采用课程用 5×5 风险矩阵思路：风险 = 严重度 × 发生可能性。由于缺少型号级失效率和运行暴露数据，以下是初步定性排序，不应解读为真实事故概率。</p></div>
+<div class="grid two">
+<div class="card"><h3>风险矩阵（示意）</h3><div class="matrix"><table class="spec-table" style="text-align:center"><tr><th>可能性＼严重度</th><th>1 轻微</th><th>2 较低</th><th>3 严重</th><th>4 危险</th><th>5 灾难</th></tr><tr><th>5 频繁</th><td class="low">中</td><td class="medium">高</td><td class="high">极高</td><td class="high">极高</td><td class="high">极高</td></tr><tr><th>4 较可能</th><td class="low">低</td><td class="medium">中</td><td class="high">高</td><td class="high">极高</td><td class="high">极高</td></tr><tr><th>3 可能</th><td class="low">低</td><td class="medium">中</td><td class="medium">中</td><td class="high">高</td><td class="high">极高</td></tr><tr><th>2 不太可能</th><td class="low">低</td><td class="low">低</td><td class="medium">中</td><td class="medium">中</td><td class="high">高</td></tr><tr><th>1 极少</th><td class="low">低</td><td class="low">低</td><td class="low">低</td><td class="medium">中</td><td class="medium">中</td></tr></table></div><p class="disclaimer">矩阵仅用于课堂讨论。实际适航安全评估需采用适用审定基础、定量/定性方法及经批准的安全分析流程。</p></div>
+<div class="card"><h3>重点风险清单</h3>
+<div class="risk"><div class="risk-top"><span class="tag">R-01 / 能源系统</span><span class="level high">高关注</span></div><h3>电池热失控或供电异常</h3><p>可能导致动力能力下降、烟火或紧急迫降。控制：电池监测、热/电隔离、充电管理、消防与隔离程序。</p><div class="bar"><i style="width:90%;background:var(--red)"></i></div></div>
+<div class="risk" style="margin-top:10px"><div class="risk-top"><span class="tag">R-02 / 飞行控制</span><span class="level high">高关注</span></div><h3>飞控或导航异常</h3><p>可能引发姿态/航迹偏离。控制：传感器合理性检查、独立监测、故障注入测试、受控降级策略。</p><div class="bar"><i style="width:82%;background:var(--red)"></i></div></div>
+<div class="risk" style="margin-top:10px"><div class="risk-top"><span class="tag">R-03 / 推进系统</span><span class="level medium">重点关注</span></div><h3>单个或多个推进单元失效</h3><p>推力不平衡可能降低控制余度。控制：推进状态监控、失效工况验证、部件寿命与维护管理。</p><div class="bar"><i style="width:70%"></i></div></div>
+<div class="risk" style="margin-top:10px"><div class="risk-top"><span class="tag">R-04 / 通信链路</span><span class="level medium">重点关注</span></div><h3>地空通信中断或受干扰</h3><p>可能影响监控和任务管理。控制：链路健康监测、失联预案、抗干扰设计、权限鉴别。</p><div class="bar"><i style="width:58%"></i></div></div>
+<div class="risk" style="margin-top:10px"><div class="risk-top"><span class="tag">R-05 / 地面运行</span><span class="level medium">重点关注</span></div><h3>起降区侵入或地面误操作</h3><p>可能造成地面人员伤害或错误放行。控制：物理隔离、检查清单、培训、双人复核与应急演练。</p><div class="bar"><i style="width:55%"></i></div></div>
+</div></div>
+<div class="notice"><strong>评估结论：</strong>高后果风险的控制不能只依赖单一设备或单一操作员。应采用设计防护、独立监测、运行限制、人员程序和应急响应多层防线，并验证各层防线不存在共同原因失效。</div>
+</div></section>
+<section class="section" id="lifecycle"><div class="wrap"><div class="section-head"><div class="kicker">05 / LIFECYCLE ASSURANCE</div><h2>全生命周期安全管理</h2><p class="sub">安全不是一次性测试结果，而是从需求定义到退役处置持续闭环的管理活动。</p></div>
+<div class="grid three">
+<div class="card"><div class="num">01</div><h3>概念与需求阶段</h3><p>定义任务边界、运行环境、乘客安全目标和适用法规；开展初步危险分析（PHA），形成可追踪的安全需求。</p></div>
+<div class="card"><div class="num">02</div><h3>设计与实现阶段</h3><p>开展系统安全评估、FMEA、故障树分析（FTA）；进行软硬件验证、接口分析、共因失效分析与构型管理。</p></div>
+<div class="card"><div class="num">03</div><h3>试验与验证阶段</h3><p>执行地面试验、环境试验、耐久/疲劳试验、仿真、故障注入及逐步扩展飞行包线的试飞验证。</p></div>
+<div class="card"><div class="num">04</div><h3>运行与监控阶段</h3><p>监测健康状态、故障和事件趋势；执行放行标准、运行限制、乘客告知、航线风险评估和应急演练。</p></div>
+<div class="card"><div class="num">05</div><h3>维修与持续适航阶段</h3><p>管理维修方案、部件寿命、软件版本、维修记录和人员资质；对重复故障开展根因分析并落实纠正措施。</p></div>
+<div class="card"><div class="num">06</div><h3>退役与数据闭环</h3><p>规范电池与复合材料处置、数据归档和经验反馈；将运行事件反馈到设计、培训和安全管理体系。</p></div>
+</div></div></section>
+<section class="section" id="recommend"><div class="wrap"><div class="section-head"><div class="kicker">06 / IMPROVEMENT PLAN</div><h2>改进建议与验证路径</h2><p class="sub">以下建议为课程层面的安全工程建议，不代表 EH216-S 当前设计缺陷或制造商未采取相关措施。</p></div>
+<div class="grid two">
+<div class="card"><h3>设计层：提升容错与可诊断性</h3><ul><li>对关键传感器、供电与控制通道开展独立性及共因失效分析。</li><li>建立电池、电机、桨叶和结构件的状态监测与寿命管理。</li><li>为通信丢失、定位异常和能源异常定义明确的安全状态与处置逻辑。</li><li>强化软件版本、参数和维护接口的访问控制与审计。</li></ul></div>
+<div class="card"><h3>运行层：建立多层防线</h3><ul><li>把天气、风况、能量余度、航线环境纳入任务放行判据。</li><li>对起降区设置实体隔离、异物检查和人员清场机制。</li><li>制定失联、迫降、火情、乘客身体不适等场景应急预案。</li><li>通过训练和演练验证地面人员、救援力量之间的协同。</li></ul></div>
+<div class="card"><h3>验证层：让安全主张有证据</h3><ul><li>将每项安全需求关联到设计实现、测试用例和结果记录。</li><li>用仿真、台架、硬件在环、地面试验和飞行试验逐级验证。</li><li>针对极端边界、组合故障和人为误操作开展场景测试。</li><li>独立审查危险分析、验证覆盖率和未关闭问题。</li></ul></div>
+<div class="card"><h3>组织层：形成持续改进闭环</h3><ul><li>建立事件/险情报告、分级调查和根因分析机制。</li><li>管理供应链质量、零部件追溯与变更影响评估。</li><li>定期复核风险登记册，检查控制措施是否有效。</li><li>把运行数据转化为维修、培训和设计改进输入。</li></ul></div>
+</div></div></section>
+<section class="section" id="conclusion"><div class="wrap"><div class="section-head"><div class="kicker">07 / CONCLUSION</div><h2>总结：安全是系统能力</h2></div>
+<div class="card"><p style="font-size:17px;color:#d7eaf7">EH216-S 的安全性不能简单归结为“有多少个旋翼”或“是否通过某项认证”，而应从航空器本体、自动飞行软件、能源与推进、通信和地面运行等多个层面综合评价。</p><p style="color:var(--muted)">对于无人驾驶载人航空器，机上驾驶员缺位使得自动化系统、地面运行人员和应急体系承担更关键的安全职责。系统安全工程的核心，是在设计阶段预先识别危险，在运行阶段持续监控风险，并通过可追溯的试验与审查证据证明安全约束得到满足。后续若能取得更完整的型号技术文件、运行数据和适航审定材料，可进一步开展定量 FTA、FMEA 与安全完整性论证。</p><div class="chips"><span class="chip">HAZARD IDENTIFICATION</span><span class="chip">RISK CONTROL</span><span class="chip">VERIFICATION</span><span class="chip">CONTINUOUS AIRWORTHINESS</span></div></div>
+</div></section>
+<section class="section" id="sources"><div class="wrap"><div class="section-head"><div class="kicker">08 / REFERENCES</div><h2>参考资料与说明</h2><p class="sub">建议提交前逐条打开核对网页发布日期、文件版本及引用页码；报告中的参数和认证状态应优先引用官方原始资料。</p></div>
+<div class="card"><ol class="source-list">
+<li>亿航智能（EHang）官方网站：产品与 EH216-S 相关公开资料。<br><a href="https://www.ehang.com/" target="_blank" rel="noopener">https://www.ehang.com/</a></li>
+<li>亿航智能：EH216-S 适航认证进程（列出 TC、PC 及运营方 OC 进展）。<br><a href="https://www.ehang.com/ehang216s/airworthiness/" target="_blank" rel="noopener">https://www.ehang.com/ehang216s/airworthiness/</a></li>
+<li>亿航智能：EH216-S 标准适航证（AC）公告，2023-12-21。<br><a href="https://www.ehang.com/cn/news/1021.html" target="_blank" rel="noopener">https://www.ehang.com/cn/news/1021.html</a></li>
+<li>中国民用航空局（CAAC）：适航审定主管部门网站，可进一步检索证书与规章原文。<br><a href="https://www.caac.gov.cn/" target="_blank" rel="noopener">https://www.caac.gov.cn/</a></li>
+<li>EHang Investor Relations：公司公告、产品信息及监管进展。<br><a href="https://ir.ehang.com/" target="_blank" rel="noopener">https://ir.ehang.com/</a></li>
+<li>FAA, <em>System Safety Handbook</em>：系统安全分析方法参考。<br><a href="https://www.faa.gov/" target="_blank" rel="noopener">https://www.faa.gov/</a></li>
+<li>SAE ARP4761 / ARP4761A：民用航空器系统与设备安全评估过程（标准文本需通过正规渠道获取）。</li>
+<li>SAE ARP4754A / ARP4754B：民用航空器及系统开发指南（标准文本需通过正规渠道获取）。</li>
+<li>课程作业要求：针对所选飞行汽车产品、型号、公司、子系统与关键技术开展系统安全工程的全方位深度分析。</li>
+</ol><p class="disclaimer">免责声明：本网页为高校课程作业与公开信息研究，不构成适航审定报告、产品安全保证、飞行操作手册或投资建议。图示为原创示意 SVG，并非 EH216-S 官方外观图；风险等级为教学分析判断。所有型号数据与认证状态请以制造商和民航主管部门最新文件为准。</p></div>
+</div></section>
+</main>
+<footer class="footer"><div class="wrap" style="display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap"><span><strong>AEROSAFE / EH216-S</strong>　SYSTEM SAFETY ANALYSIS</span><span>课程项目 · 汽车工程专业 · 2026</span></div></footer>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到顶部">↑</button>
+<script>
+const progress=document.getElementById('progress');
+window.addEventListener('scroll',()=>{const d=document.documentElement;progress.style.width=((d.scrollTop/(d.scrollHeight-d.clientHeight))*100)+'%'});
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');observer.unobserve(e.target)}}),{threshold:.08});
+document.querySelectorAll('.card,.sysitem,.section-head').forEach(el=>{el.classList.add('reveal');observer.observe(el)});
+</script>
+</body>
+</html>
